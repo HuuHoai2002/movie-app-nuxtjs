@@ -45,7 +45,7 @@ export default {
     },
   },
   target: 'static',
-  ssr: false,
+  // ssr: false,
 
   axios: {
     baseURL: process.env.API_URL,

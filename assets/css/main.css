@@ -16,7 +16,7 @@
     overflow: overlay;
     background-image: url('~static/img/bg.png');
     background-size: 100%;
-    background-position: 50% -160px;
+    background-position: 50% -170px;
     background-repeat: repeat-y;
   }
   body::-webkit-scrollbar {

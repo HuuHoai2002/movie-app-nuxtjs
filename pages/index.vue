@@ -1,5 +1,5 @@
 <template>
-  <div class=""><Banner /></div>
+  <div class="min-h-screen"><Banner /></div>
 </template>
 
 <script lang="ts">
