@@ -6,5 +6,6 @@ export default defineNuxtPlugin(({ $axios }) => {
       ...config.params,
       api_key: process.env.API_KEY,
     }
+    // console.log(config.params)
   })
 })

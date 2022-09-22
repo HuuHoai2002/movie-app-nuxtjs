@@ -1,5 +1,9 @@
 {
   "name": "nuxtjs-movie-app",
+  "author": {
+    "name": "Nghiêm Hữu Hoài",
+    "email": "huuhoai0511@gmail.com"
+  },
   "version": "1.0.0",
   "private": true,
   "scripts": {

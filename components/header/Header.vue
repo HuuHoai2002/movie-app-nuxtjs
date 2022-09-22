@@ -1,7 +1,7 @@
 <template lang="">
   <div class="w-full bg-primary bg-opacity-80 sticky top-0 z-50">
     <div
-      class="w-full max-w-[1280px] px-5 lg:px-0 mx-auto h-[60px] lg:h-[70px] text-white flex items-center justify-between"
+      class="w-full max-w-[1240px] px-4 lg:px-0 mx-auto h-[60px] lg:h-[70px] text-white flex items-center justify-between"
     >
       <nuxt-link to="/"
         ><img src="~/static/img/icon.png" alt="" class="w-10 h-10"

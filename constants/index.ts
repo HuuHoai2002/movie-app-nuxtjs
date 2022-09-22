@@ -11,3 +11,4 @@ export type SeriesType =
   | 'upcoming'
   | 'now_playing'
   | 'trending'
+export type ImageType = 'w500' | 'w780' | 'w1280' | 'original'

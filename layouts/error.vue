@@ -20,7 +20,7 @@
           Oops! This is awkward. You are looking for something that doesn't
           actually exist.
         </p>
-        <base-button @click="navigate('/')"> Go Home</base-button>
+        <BaseButton @click="navigate('/')"> Go Home</BaseButton>
       </div>
     </div>
   </div>

@@ -17,7 +17,7 @@ module.exports = {
         sky: '#1EA5FC',
         red: '#FF6161',
         purple: '#B66DFF',
-        yellow: '#FFAD49',
+        yellow500: '#FFAD49',
         gray200: '#A8AEBF',
         gray50: '#EBEEF5',
         gray300: '#8E95A9',

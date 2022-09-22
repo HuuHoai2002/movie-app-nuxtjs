@@ -1,4 +1,6 @@
-export default {
+import { NuxtConfig } from '@nuxt/types'
+
+const config: NuxtConfig = {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: 'Nuxt Movie App',
@@ -19,7 +21,7 @@ export default {
   generate: { fallback: '404.html' },
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: ['~plugins/axios.ts'],
+  plugins: ['~plugins/axios.ts', '~plugins/repository.ts'],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -45,9 +47,17 @@ export default {
     },
   },
   target: 'static',
-  // ssr: false,
+  ssr: false,
 
   axios: {
     baseURL: process.env.API_URL,
   },
+
+  env: {
+    API_URL: process.env.API_URL as string,
+    API_KEY: process.env.API_KEY as string,
+    IMAGE_URL: process.env.IMAGE_URL as string,
+  },
 }
+
+export default config

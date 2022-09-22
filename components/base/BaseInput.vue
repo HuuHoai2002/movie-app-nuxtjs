@@ -1,7 +1,7 @@
 <template lang="">
   <div class="relative">
     <input
-      class="w-full pr-4 pl-[56px] py-5 rounded-xl border bg-transparent opacity-90 outline-none border-gray700 placeholder-gray600"
+      class="w-full pr-3 pl-[52px] py-3 lg:pr-4 lg:pl-[56px] lg:py-5 rounded-xl border bg-transparent opacity-90 outline-none border-gray700 placeholder-gray600"
       :type="type"
       :class="className"
       :placeholder="placeholder"
