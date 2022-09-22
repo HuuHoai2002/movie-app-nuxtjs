@@ -1,6 +1,8 @@
 import { NuxtConfig } from '@nuxt/types'
 
 const config: NuxtConfig = {
+  target: 'static',
+  ssr: false,
   // Global page headers: https://go.nuxtjs.dev/config-head
   // head: {
   //   title: 'Nuxt Movie App',
@@ -46,8 +48,6 @@ const config: NuxtConfig = {
       },
     },
   },
-  target: 'static',
-  ssr: false,
 
   axios: {
     baseURL: process.env.API_URL,
