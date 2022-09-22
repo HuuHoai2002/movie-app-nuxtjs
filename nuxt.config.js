@@ -16,7 +16,7 @@ export default {
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: ['@/assets/css/main.css'],
-  // generate: { fallback: '404.html', exclude: [/^\/admin/] },
+  generate: { fallback: '404.html' },
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: ['~plugins/axios.ts', '~plugins/repository.ts'],
@@ -50,8 +50,8 @@ export default {
   },
 
   env: {
-    API_URL: process.env.API_URL as string,
-    API_KEY: process.env.API_KEY as string,
-    IMAGE_URL: process.env.IMAGE_URL as string,
+    API_URL: process.env.API_URL,
+    API_KEY: process.env.API_KEY,
+    IMAGE_URL: process.env.IMAGE_URL,
   },
 }
