@@ -1,7 +1,7 @@
 <template lang="">
   <div class="w-full h-full">
     <div
-      class="lg:hidden bg-primary fixed top-0 right-0 w-[60%] h-full z-[100] translate-x-[100%] transition-all duration-300"
+      class="lg:hidden bg-primary fixed top-0 right-0 w-[268px] h-full z-[100] translate-x-[100%] transition-all duration-300"
       :class="{ '!translate-x-0': activeMobileMenu }"
     ></div>
     <div

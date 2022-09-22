@@ -6,15 +6,28 @@
     <div class="lg:max-w-[344px] lg:mb-6 mb-4">
       <Tabs :tab-content="['All', 'Movies', 'Series']"> </Tabs>
     </div>
-    <grid-layout> </grid-layout>
+    <grid-layout>
+      <div v-if="movies.results.length <= 0">loading...</div>
+      <template v-for="movie in movies.results" v-else>
+        <movie-card
+          :key="movie.id"
+          :backdrop-path="movie.backdrop_path"
+          :title="movie.name || movie.title"
+          :vote-average="movie.vote_average"
+        />
+      </template>
+    </grid-layout>
+    <button @click="changePage">Click</button>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from '@nuxtjs/composition-api'
+import { defineComponent, useMeta } from '@nuxtjs/composition-api'
 import Banner from '~/components/banner/Banner.vue'
 import Tabs from '~/components/tab/Tabs.vue'
 import GridLayout from '~/components/layout/GridLayout.vue'
+import { useSeries } from '~/composables'
+import MovieCard from '~/components/movie/MovieCard.vue'
 
 export default defineComponent({
   name: 'Home',
@@ -22,7 +35,54 @@ export default defineComponent({
     Banner,
     Tabs,
     GridLayout,
+    MovieCard,
   },
-  setup() {},
+  setup() {
+    useMeta({
+      title: 'Home',
+      meta: [
+        {
+          name: 'description',
+          content:
+            'NextJS Movie App - Xem phim mọi lúc, mọi nơi, miễn phí truy cập vô thời hạn, kho phim khổng siêu khổng lồ, đủ mọi thể loại: Phim Kinh Dị, Phim Hoạt Hình, Phim Hành Động, Phim Phiêu Lưu, Phim 4K.',
+        },
+        {
+          name: 'keywords',
+          content:
+            'Phim hành động, phim HD, VTV1, VTV2, VTV3, VTV6, K+, HTV, Thể Thao, Truyền Hình Trực Tuyến, Bóng Đá, Phim Hàn Quốc, Phim Trung Quốc, Ngoại hạng Anh, xem tivi miễn phí Data 4G',
+        },
+        {
+          property: 'og:site_name',
+          content: 'movie-app-nextjs-green.vercel.app',
+        },
+        {
+          property: 'og:description',
+          content:
+            'NextJS Movie App - Xem phim mọi lúc, mọi nơi, miễn phí truy cập vô thời hạn, kho phim khổng siêu khổng lồ, đủ mọi thể loại: Phim Kinh Dị, Phim Hoạt Hình, Phim Hành Động, Phim Phiêu Lưu, Phim 4K.',
+        },
+        {
+          property: 'og:title',
+          content:
+            'NextJS Movie App - Xem phim miễn phí, không lo quảng cáo, kho phim HD đặc sắc',
+        },
+        {
+          property: 'og:image',
+          content:
+            'http://cdn-vttvas.public.storebox.vn/image1/TV360_static_image/tivi360.jpg',
+        },
+        {
+          property: 'og:image:alt',
+          content:
+            'NextJS Movie App - Xem phim miễn phí, không lo quảng cáo, kho phim HD đặc sắc',
+        },
+      ],
+    })
+    const { movies, changePage } = useSeries('popular')
+    return {
+      movies,
+      changePage,
+    }
+  },
+  head: {},
 })
 </script>
