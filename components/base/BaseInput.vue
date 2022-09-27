@@ -8,19 +8,17 @@
       autocomplete="off"
       @input="onChange"
     />
-    <div class="absolute top-2/4 left-4 -translate-y-2/4"><SearchIcon /></div>
+    <div class="absolute top-2/4 left-4 -translate-y-2/4">
+      <slot></slot>
+    </div>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from '@nuxtjs/composition-api'
-import SearchIcon from '~/components/icons/SearchIcon.vue'
 
 export default defineComponent({
   name: 'BaseInput',
-  components: {
-    SearchIcon,
-  },
   props: {
     type: {
       type: String,

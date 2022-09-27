@@ -1,9 +1,17 @@
-import { ref, useContext, watch } from '@nuxtjs/composition-api'
+import {
+  computed,
+  Ref,
+  ref,
+  useAsync,
+  // toRefs,
+  useContext,
+  watch,
+} from '@nuxtjs/composition-api'
 import { SeriesType } from '~/constants'
 import { Series } from '~/types'
 import TmdbResponse from '~/types/TmdbResponse'
 
-export default function useSeries(type: SeriesType) {
+export default function useSeries(type: Ref<SeriesType>) {
   const { $repository } = useContext()
 
   const movies = ref<TmdbResponse<Series>>({
@@ -16,7 +24,10 @@ export default function useSeries(type: SeriesType) {
   const page = ref<number>(1)
 
   const fetchSeries = async () => {
-    const response = await $repository.movies.getSeriesList(type, page.value)
+    const response = await $repository.movies.getSeriesList(
+      type.value,
+      page.value
+    )
 
     if (page.value > 1 && response && movies.value?.results) {
       movies.value = {
@@ -28,7 +39,20 @@ export default function useSeries(type: SeriesType) {
     }
   }
 
-  watch(() => page.value, fetchSeries, { immediate: true })
+  watch(
+    () => page.value,
+    () => {
+      useAsync(fetchSeries)
+    },
+    { immediate: true }
+  )
+  watch(
+    () => type.value,
+    () => {
+      page.value = 1
+      useAsync(fetchSeries)
+    }
+  )
 
   const changePage = () => {
     if (movies.value?.total_pages && page.value < movies.value.total_pages) {
@@ -36,5 +60,9 @@ export default function useSeries(type: SeriesType) {
     }
   }
 
-  return { changePage, movies }
+  return {
+    changePage,
+    // ...toRefs(movies),
+    movies: computed(() => movies.value),
+  }
 }

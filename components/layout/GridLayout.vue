@@ -1,6 +1,6 @@
 <template lang="">
   <div
-    class="grid grid-cols-1 lg:grid-cols-4 lg:gap-6 gap-4"
+    class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 lg:gap-6 gap-4"
     :class="className"
   >
     <slot></slot>

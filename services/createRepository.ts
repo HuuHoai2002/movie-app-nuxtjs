@@ -11,8 +11,6 @@ export type Repository = {
   images: ImageRepository
 }
 
-// kết hợp các repository lại với nhau
-
 const createRepository = ({ $axios }: Context): Repository => {
   return {
     movies: movieRepository($axios),

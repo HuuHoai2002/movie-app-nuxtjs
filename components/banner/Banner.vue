@@ -8,7 +8,9 @@
       </p>
     </div>
     <div class="lg:max-w-[344px]">
-      <base-input placeholder="Search Movies or TV Shows" />
+      <base-input placeholder="Search Movies or TV Shows">
+        <span class="text-[#475069]"><search-icon /></span>
+      </base-input>
     </div>
   </div>
 </template>
@@ -16,11 +18,13 @@
 <script lang="ts">
 import { defineComponent } from '@nuxtjs/composition-api'
 import BaseInput from '~/components/base/BaseInput.vue'
+import SearchIcon from '~/components/icons/SearchIcon.vue'
 
 export default defineComponent({
   name: 'Banner',
   components: {
     BaseInput,
+    SearchIcon,
   },
   setup() {
     return {}

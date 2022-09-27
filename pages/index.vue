@@ -3,21 +3,23 @@
     <div>
       <Banner />
     </div>
-    <div class="lg:max-w-[344px] lg:mb-6 mb-4">
-      <Tabs :tab-content="['All', 'Movies', 'Series']"> </Tabs>
+    <div class="w-full lg:mb-6 mb-4">
+      <Tabs :tabs="tabs" @change="updatePath"> </Tabs>
     </div>
-    <grid-layout>
-      <div v-if="movies.results.length <= 0">loading...</div>
-      <template v-for="movie in movies.results" v-else>
-        <movie-card
-          :key="movie.id"
-          :backdrop-path="movie.backdrop_path"
-          :title="movie.name || movie.title"
-          :vote-average="movie.vote_average"
-        />
-      </template>
+    <template v-if="movies.results.length <= 0"> <base-loading /> </template>
+    <grid-layout v-else>
+      <movie-card
+        v-for="movie in movies.results"
+        :id="movie.id"
+        :key="movie.id"
+        :backdrop-path="movie.poster_path ?? ''"
+        :title="movie.name || movie.title"
+        :vote-average="movie.vote_average"
+      />
     </grid-layout>
-    <button @click="changePage">Click</button>
+    <div class="my-5 lg:my-10 w-full flex items-center justify-center">
+      <base-button @click="changePage">Load more</base-button>
+    </div>
   </div>
 </template>
 
@@ -26,8 +28,10 @@ import { defineComponent, useMeta } from '@nuxtjs/composition-api'
 import Banner from '~/components/banner/Banner.vue'
 import Tabs from '~/components/tab/Tabs.vue'
 import GridLayout from '~/components/layout/GridLayout.vue'
-import { useSeries } from '~/composables'
+import { useSeries, useTabs } from '~/composables'
 import MovieCard from '~/components/movie/MovieCard.vue'
+import BaseButton from '~/components/base/BaseButton.vue'
+import BaseLoading from '~/components/base/BaseLoading.vue'
 
 export default defineComponent({
   name: 'Home',
@@ -36,6 +40,8 @@ export default defineComponent({
     Tabs,
     GridLayout,
     MovieCard,
+    BaseButton,
+    BaseLoading,
   },
   setup() {
     useMeta({
@@ -77,10 +83,32 @@ export default defineComponent({
         },
       ],
     })
-    const { movies, changePage } = useSeries('popular')
+
+    const { tabs, updatePath, pathActive } = useTabs([
+      {
+        title: 'Today',
+        path: 'airing_today',
+      },
+      {
+        title: 'Top Rated',
+        path: 'top_rated',
+      },
+      {
+        title: 'On The Air',
+        path: 'on_the_air',
+      },
+      {
+        title: 'Popular',
+        path: 'popular',
+      },
+    ])
+    const { movies, changePage } = useSeries(pathActive)
+
     return {
       movies,
       changePage,
+      tabs,
+      updatePath,
     }
   },
   head: {},

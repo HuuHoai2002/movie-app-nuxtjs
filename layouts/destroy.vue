@@ -1,5 +1,5 @@
 <template lang="">
-  <div>
+  <div class="p-4 lg:p-0">
     <Nuxt />
   </div>
 </template>

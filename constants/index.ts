@@ -5,10 +5,5 @@ export enum MovieType {
   NOW_PLAYING = 'now_playing',
   TRENDING = 'trending',
 }
-export type SeriesType =
-  | 'popular'
-  | 'top_rated'
-  | 'upcoming'
-  | 'now_playing'
-  | 'trending'
+export type SeriesType = 'popular' | 'airing_today' | 'on_the_air' | 'top_rated'
 export type ImageType = 'w500' | 'w780' | 'w1280' | 'original'

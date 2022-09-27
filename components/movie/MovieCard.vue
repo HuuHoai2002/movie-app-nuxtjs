@@ -1,9 +1,16 @@
 <template>
-  <div class="px-2 pt-2 w-full rounded-xl bg-[rgba(32,_40,_62,_0.8)]">
+  <nuxt-link
+    :to="`${title.split(' ').join('-')}@${id}`"
+    class="px-2 pt-2 w-full rounded-xl bg-[rgba(32,_40,_62,_0.8)]"
+  >
     <div class="w-full">
       <div class="relative">
         <img
-          :src="getImages('w500', backdropPath)"
+          :src="[
+            backdropPath
+              ? getImages('w500', backdropPath)
+              : 'https://cdn.dribbble.com/userupload/3652229/file/original-72fec2438aa0eff29b72b24137e65aff.png?compress=1&resize=1024x768',
+          ]"
           alt="image"
           class="w-full rounded-lg lg:h-[380px] object-cover"
         />
@@ -37,7 +44,7 @@
         </h2>
       </div>
     </div>
-  </div>
+  </nuxt-link>
 </template>
 
 <script lang="ts">
@@ -47,6 +54,10 @@ import { defineComponent } from 'vue'
 export default defineComponent({
   name: 'MovieCard',
   props: {
+    id: {
+      type: Number,
+      required: true,
+    },
     backdropPath: {
       type: String,
       required: true,
@@ -67,13 +78,4 @@ export default defineComponent({
 })
 </script>
 
-<style scoped>
-.text-truncate {
-  display: -webkit-box;
-  -webkit-line-clamp: 1;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  word-break: break-word;
-}
-</style>
+<style scoped></style>
